@@ -1,1 +1,10 @@
-This folder contains all test artifacts examples I created and used as QA specialist
+dfsdfdsfsdfsdfs
+
+
+
+
+
+
+
+
+sdfsdfsdf folder contains all test artifacts examples I created and used as QA specialist
