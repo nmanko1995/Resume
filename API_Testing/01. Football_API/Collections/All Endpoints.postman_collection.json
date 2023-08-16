@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "4a48376c-56b3-43f7-a71a-7dfa970a3c6b",
+		"name": "All Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27942804"
+	},
+	"item": [
+		{
+			"name": "List of Timezones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"pm.test(\"All attributes are presented\", () => {",
+							"    pm.expect(jsonData).to.have.keys(\"get\", \"parameters\", \"errors\", \"results\", \"paging\", \"response\");",
+							"    pm.expect(jsonData.paging).to.have.keys(\"current\", \"total\");",
+							"});",
+							"",
+							"pm.test(\"All data types are correct\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"    pm.expect(jsonData.get).to.be.a(\"string\");",
+							"    pm.expect(jsonData.parameters).to.be.an(\"array\");",
+							"    pm.expect(jsonData.errors).to.be.an(\"array\");    ",
+							"    pm.expect(jsonData.results).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging).to.be.an(\"object\");",
+							"    pm.expect(jsonData.paging.current).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging.total).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-apisports-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/timezone",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"timezone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Countries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"pm.test(\"All attributes are presented\", () => {",
+							"    pm.expect(jsonData).to.have.keys(\"get\", \"parameters\", \"errors\", \"results\", \"paging\", \"response\");",
+							"    pm.expect(jsonData.paging).to.have.keys(\"current\", \"total\");",
+							"    pm.expect(jsonData.response[0]).to.have.keys(\"name\", \"code\", \"flag\");",
+							"});",
+							"pm.test(\"All data types are correct\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"    pm.expect(jsonData.get).to.be.a(\"string\");",
+							"    pm.expect(jsonData.parameters).to.be.an(\"array\");",
+							"    pm.expect(jsonData.errors).to.be.an(\"array\");    ",
+							"    pm.expect(jsonData.results).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging).to.be.an(\"object\");",
+							"    pm.expect(jsonData.paging.current).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging.total).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response).to.be.an(\"array\");",
+							"    pm.expect(jsonData.response[0].name).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0].code).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0].flag).to.be.a(\"string\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-apisports-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/countries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Leagues/Cups",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"pm.test(\"All attributes are presented\", () => {",
+							"pm.expect(jsonData).to.have.keys(\"get\", \"parameters\", \"errors\", \"results\", \"paging\", \"response\");",
+							"pm.expect(jsonData.paging).to.have.keys(\"current\", \"total\");",
+							"pm.expect(jsonData.response[0]).to.have.keys(\"league\", \"country\", \"seasons\");",
+							"pm.expect(jsonData.response[0].league).to.have.keys(\"id\", \"name\", \"type\", \"logo\");",
+							"pm.expect(jsonData.response[0].country).to.have.keys(\"name\", \"code\", \"flag\");",
+							"pm.expect(jsonData.response[0].seasons[0]).to.have.keys(\"year\", \"start\", \"end\", \"current\", \"coverage\");",
+							"pm.expect(jsonData.response[0].seasons[0].coverage).to.have.keys(\"fixtures\", \"standings\", \"players\", \"top_scorers\", \"top_assists\", \"top_cards\", \"injuries\", \"predictions\", \"odds\");",
+							"pm.expect(jsonData.response[0].seasons[0].coverage.fixtures).to.have.keys(\"events\", \"lineups\", \"statistics_fixtures\", \"statistics_players\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"All data types are correct\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"    pm.expect(jsonData.get).to.be.a(\"string\");",
+							"    pm.expect(jsonData.parameters).to.be.an(\"array\");",
+							"    pm.expect(jsonData.errors).to.be.an(\"array\");    ",
+							"    pm.expect(jsonData.results).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging).to.be.an(\"object\");",
+							"    pm.expect(jsonData.paging.current).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging.total).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response).to.be.an(\"array\");",
+							"    pm.expect(jsonData.response[0,1,2].league).to.be.an(\"object\");",
+							"    pm.expect(jsonData.response[0,1,2].league.id).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response[0,1,2].league.name).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].league.type).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].league.logo).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].country).to.be.an(\"object\");",
+							"    pm.expect(jsonData.response[0,1,2].country.name).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].country.code).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].country.flag).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons).to.be.an(\"array\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].year).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].start).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].end).to.be.a(\"string\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].current).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage).to.be.an(\"object\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.fixtures).to.be.an(\"object\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.fixtures.events).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.fixtures.lineups).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.fixtures.statistics_fixtures).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.fixtures.statistics_players).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.standings).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.players).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.top_scorers).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.predictions).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.response[0,1,2].seasons[0,1,2].coverage.odds).to.be.a(\"boolean\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-apisports-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/leagues",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"leagues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Leagues/Cups Seasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"pm.test(\"All attributes are presented\", () => {",
+							"    pm.expect(jsonData).to.have.keys(\"get\", \"parameters\", \"errors\", \"results\", \"paging\", \"response\");",
+							"    pm.expect(jsonData.paging).to.have.keys(\"current\", \"total\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"All data types are correct\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"    pm.expect(jsonData.get).to.be.a(\"string\");",
+							"    pm.expect(jsonData.parameters).to.be.an(\"array\");",
+							"    pm.expect(jsonData.errors).to.be.an(\"array\");    ",
+							"    pm.expect(jsonData.results).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging).to.be.an(\"object\");",
+							"    pm.expect(jsonData.paging.current).to.be.a(\"number\");",
+							"    pm.expect(jsonData.paging.total).to.be.a(\"number\");",
+							"    pm.expect(jsonData.response).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-apisports-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/leagues/seasons",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"leagues",
+						"seasons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"//pm.test(\"All attributes are presented\", () => {",
+							"//    pm.expect(jsonData).to.have.keys(\"get\", \"parameters\", \"errors\", \"results\", \"paging\", \"response\");",
+							"//    pm.expect(jsonData.errors).to.have.key(\"required\");",
+							"//    pm.expect(jsonData.paging).to.have.keys(\"current\", \"total\");",
+							"//});",
+							"",
+							"",
+							"//pm.test(\"All data types are correct\", () => {",
+							" //   pm.expect(jsonData).to.be.an(\"object\");",
+							"//    pm.expect(jsonData.get).to.be.a(\"string\");",
+							"//    pm.expect(jsonData.parameters).to.be.an(\"array\");",
+							" //   pm.expect(jsonData.errors).to.be.an(\"object\");    ",
+							"//    pm.expect(jsonData.results).to.be.a(\"number\");",
+							"//    pm.expect(jsonData.paging).to.be.an(\"object\");",
+							"//    pm.expect(jsonData.paging.current).to.be.a(\"number\");",
+							" //   pm.expect(jsonData.paging.total).to.be.a(\"number\");",
+							" //   pm.expect(jsonData.response).to.be.an(\"array\");",
+							"//});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-apisports-key",
+						"value": "{{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/teams?id=3386",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3386"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", () => {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Response schema is json\", () => {",
+					"    pm.response.to.have.header(\"Content-Type\", \"application/json\");",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiKey",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
